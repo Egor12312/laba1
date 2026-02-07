@@ -1,54 +1,54 @@
 ﻿using System;
 
 class Program {
-  static long CalculatePower(int theBasisOfTheDegree, int degree) {
+  static long CalculatePower(int baseNumber, int exponent) {
     long result = 1;
-    for (int exponentiationCounter = 0; exponentiationCounter < degree; ++exponentiationCounter) {
-      result *= theBasisOfTheDegree;
+
+    for (int counter = 0; counter < exponent; ++counter) {
+      result *= baseNumber;
     }
+
     return result;
   }
 
-  static bool TryTransformNumber(string theEnteredNumber, out string transformedNumber) {
-    int number = 1;
-    int numberLength = 2;
+  static bool TryTransformNumber(string inputNumber, out string transformedNumber) {
+    int MinDigitsRequired = 2;
+    int SecondDigitIndex = 1;
+
     transformedNumber = string.Empty;
 
-    if (theEnteredNumber.Length <= numberLength) {
+    if (inputNumber.Length <= MinDigitsRequired) {
       return false;
     }
 
-    char secondDigit = theEnteredNumber[number];
-    string newNumber = theEnteredNumber.Remove(1, 1);
-    transformedNumber = newNumber + secondDigit;
+    char secondDigit = inputNumber[SecondDigitIndex];
+    string numberWithoutSecondDigit = inputNumber.Remove(SecondDigitIndex, 1);
+    transformedNumber = numberWithoutSecondDigit + secondDigit;
 
     return true;
   }
 
   static void Main() {
-    Console.Write("\nTask 1:\n");
-    Console.Write("Enter the base a: ");
-    int theBasisOfTheDegree = int.Parse(Console.ReadLine());
+    Console.Write("\nTask 1:\nEnter the base a: ");
+    int baseNumber = int.Parse(Console.ReadLine());
 
     Console.Write("Enter the degree indicator n: ");
-    int degree = int.Parse(Console.ReadLine());
+    int exponent = int.Parse(Console.ReadLine());
 
-    long powerResult = CalculatePower(theBasisOfTheDegree, degree);
-    Console.WriteLine($"Result: {theBasisOfTheDegree} to the extent of {degree} = {powerResult}");
+    long powerResult = CalculatePower(baseNumber, exponent);
+    Console.WriteLine($"Result: {baseNumber} to the extent of {exponent} = {powerResult}");
 
-    Console.Write("\nTask 2:\n");
-    Console.Write("Enter a number x (more than 2 digits): ");
-    string theEnteredNumber = Console.ReadLine();
+    Console.Write("\nTask 2:\nEnter a number x (more than 2 digits): ");
+    string inputNumber = Console.ReadLine();
 
-    if (TryTransformNumber(theEnteredNumber, out string transformedNumber)) {
-      Console.WriteLine($"The original number: {theEnteredNumber}");
+    if (TryTransformNumber(inputNumber, out string transformedNumber)) {
+      Console.WriteLine($"The original number: {inputNumber}");
       Console.WriteLine($"Conversion result: {transformedNumber}");
-    }
-    else {
-      Console.WriteLine($"Mistake: The number must contain more than two digits");
+    } else {
+      Console.WriteLine("Mistake: The number must contain more than two digits");
     }
 
-    Console.WriteLine("\nPress any key to exit...");
+    Console.Write("\nPress any key to exit...");
     Console.ReadKey();
   }
 }
