@@ -2,7 +2,8 @@
 
 class Program {
   static long CalculatePower(int baseNumber, int exponent) {
-    long result = 1;
+    long result;
+    result = 1;
 
     for (int counter = 0; counter < exponent; ++counter) {
       result *= baseNumber;
@@ -12,8 +13,11 @@ class Program {
   }
 
   static bool TryTransformNumber(string inputNumber, out string transformedNumber) {
-    int MinDigitsRequired = 2;
-    int SecondDigitIndex = 1;
+    int MinDigitsRequired;
+    MinDigitsRequired = 2;
+
+    int SecondDigitIndex;
+    SecondDigitIndex = 1;
 
     transformedNumber = string.Empty;
 
@@ -21,8 +25,12 @@ class Program {
       return false;
     }
 
-    char secondDigit = inputNumber[SecondDigitIndex];
-    string numberWithoutSecondDigit = inputNumber.Remove(SecondDigitIndex, 1);
+    char secondDigit;
+    secondDigit = inputNumber[SecondDigitIndex];
+
+    string numberWithoutSecondDigit;
+    numberWithoutSecondDigit = inputNumber.Remove(SecondDigitIndex, 1);
+
     transformedNumber = numberWithoutSecondDigit + secondDigit;
 
     return true;
@@ -30,20 +38,28 @@ class Program {
 
   static void Main() {
     Console.Write("\nTask 1:\nEnter the base a: ");
-    int baseNumber = int.Parse(Console.ReadLine());
+    int baseNumber;
+    baseNumber = int.Parse(Console.ReadLine());
 
     Console.Write("Enter the degree indicator n: ");
-    int exponent = int.Parse(Console.ReadLine());
+    int exponent;
+    exponent = int.Parse(Console.ReadLine());
 
-    long powerResult = CalculatePower(baseNumber, exponent);
+    long powerResult;
+    powerResult = CalculatePower(baseNumber, exponent);
+
     Console.WriteLine($"Result: {baseNumber} to the extent of {exponent} = {powerResult}");
 
     Console.Write("\nTask 2:\nEnter a number x (more than 2 digits): ");
-    string inputNumber = Console.ReadLine();
+    string inputNumber;
+    inputNumber = Console.ReadLine();
 
-    if (TryTransformNumber(inputNumber, out string transformedNumber)) {
-      Console.WriteLine($"The original number: {inputNumber}");
-      Console.WriteLine($"Conversion result: {transformedNumber}");
+    string transformedNumber;
+    bool isTransformed;
+    isTransformed = TryTransformNumber(inputNumber, out transformedNumber);
+
+    if (isTransformed) {
+      Console.WriteLine($"The original number: {inputNumber}\nConversion result: {transformedNumber}");
     } else {
       Console.WriteLine("Mistake: The number must contain more than two digits");
     }
