@@ -3,9 +3,10 @@
 class Program {
   static long CalculatePower(int baseNumber, int exponent) {
     long result;
+    int counter;
     result = 1;
 
-    for (int counter = 0; counter < exponent; ++counter) {
+    for (counter = 0; counter < exponent; ++counter) {
       result *= baseNumber;
     }
 
@@ -13,10 +14,10 @@ class Program {
   }
 
   static bool TryTransformNumber(string inputNumber, out string transformedNumber) {
-    int MinDigitsRequired;
+    int MinDigitsRequired, SecondDigitIndex;
+    char secondDigit;
+    string numberWithoutSecondDigit;
     MinDigitsRequired = 2;
-
-    int SecondDigitIndex;
     SecondDigitIndex = 1;
 
     transformedNumber = string.Empty;
@@ -25,10 +26,8 @@ class Program {
       return false;
     }
 
-    char secondDigit;
     secondDigit = inputNumber[SecondDigitIndex];
 
-    string numberWithoutSecondDigit;
     numberWithoutSecondDigit = inputNumber.Remove(SecondDigitIndex, 1);
 
     transformedNumber = numberWithoutSecondDigit + secondDigit;
@@ -38,24 +37,21 @@ class Program {
 
   static void Main() {
     Console.Write("\nTask 1:\nEnter the base a: ");
-    int baseNumber;
+    int baseNumber, exponent;
+    long powerResult;
+    string inputNumber, transformedNumber;
+    bool isTransformed;
+
     baseNumber = int.Parse(Console.ReadLine());
 
     Console.Write("Enter the degree indicator n: ");
-    int exponent;
     exponent = int.Parse(Console.ReadLine());
 
-    long powerResult;
     powerResult = CalculatePower(baseNumber, exponent);
 
-    Console.WriteLine($"Result: {baseNumber} to the extent of {exponent} = {powerResult}");
-
-    Console.Write("\nTask 2:\nEnter a number x (more than 2 digits): ");
-    string inputNumber;
+    Console.WriteLine($"Result: {baseNumber} to the extent of {exponent} = {powerResult}\n\nTask 2:\nEnter a number x (more than 2 digits): ");
     inputNumber = Console.ReadLine();
 
-    string transformedNumber;
-    bool isTransformed;
     isTransformed = TryTransformNumber(inputNumber, out transformedNumber);
 
     if (isTransformed) {
