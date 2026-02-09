@@ -4,6 +4,7 @@ class Program {
   static long CalculatePower(int baseNumber, int exponent) {
     long result;
     int counter;
+
     result = 1;
 
     for (counter = 0; counter < exponent; ++counter) {
@@ -17,6 +18,7 @@ class Program {
     int MinDigitsRequired, SecondDigitIndex;
     char secondDigit;
     string numberWithoutSecondDigit;
+
     MinDigitsRequired = 2;
     SecondDigitIndex = 1;
 
@@ -36,12 +38,12 @@ class Program {
   }
 
   static void Main() {
-    Console.Write("\nTask 1:\nEnter the base a: ");
     int baseNumber, exponent;
     long powerResult;
     string inputNumber, transformedNumber;
     bool isTransformed;
 
+    Console.Write("\nTask 1:\nEnter the base a: ");
     baseNumber = int.Parse(Console.ReadLine());
 
     Console.Write("Enter the degree indicator n: ");
